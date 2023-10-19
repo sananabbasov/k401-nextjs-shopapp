@@ -17,6 +17,7 @@ export default NextAuth({
             },
             async authorize(credentials, req) {
                 try {
+                    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // Ignore self-signed certificate error
                     const res = await fetch("https://localhost:7037/api/v1/User/Login", {
                         method: "POST",
                         headers: {

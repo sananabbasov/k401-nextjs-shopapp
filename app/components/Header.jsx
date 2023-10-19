@@ -1,11 +1,15 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useState } from "react";
+import Menuu from "./Menuu";
 
 function Header() {
 
+  const [settings,setSettings] = useState(false)
+
   const { data: session } = useSession();
 
-  console.log(session);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -20,9 +24,9 @@ function Header() {
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
-          <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-            Docs
-          </a>
+          <Link href="/" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            Home
+          </Link>
           <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Examples
           </a>
@@ -36,9 +40,16 @@ function Header() {
             session?.user ?
               (
                 <>
-                  <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                  <button  onClick={() => setSettings(!settings)} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 relative">
                     {session.user.first_name} {session.user.last_name}
-                  </a>
+                    <div className={`absolute bg-teal-500 ${settings? "":"hidden"}`}>
+                      <ul>
+                        <li><Link href={"/"}>Orders</Link></li>
+                        <li><Link href={"/"}>Wishlist</Link></li>
+                        <li><Link href={"/"}>Add product</Link></li>
+                      </ul>
+                    </div>
+                  </button>
                   <button onClick={() => signOut()} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
                     Logout
                   </button>
@@ -49,6 +60,7 @@ function Header() {
                   <button onClick={() => signIn()} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
                     Login
                   </button>
+                  <Menuu />
                 </>
               )
           }

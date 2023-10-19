@@ -2,7 +2,8 @@ import React from 'react'
 
 function index() {
   return (
-    <div>Blog</div>
+      <div>Blog</div>
+  
   )
 }
 
