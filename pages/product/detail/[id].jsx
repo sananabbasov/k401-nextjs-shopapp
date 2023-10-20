@@ -6,7 +6,7 @@ import "@/app/globals.css"
 export default function Detail({ product }) {
     const { data: session } = useSession();
 
-    console.log("Detail", session?.user);
+  
     return (
         <>
             <div className="bg-gray-100 py-8">
@@ -309,7 +309,6 @@ export async function getServerSideProps(router) {
     const s = await res.json()
 
     const product = s.data;
-    console.log(product);
     // Pass data to the page via props
     return { props: { product } }
 }

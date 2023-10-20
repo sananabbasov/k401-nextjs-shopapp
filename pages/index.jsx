@@ -1,7 +1,7 @@
-import Slider from "@/app/components/Slider";
 import Link from "next/link"
 import "../app/globals.css"
 import { useState } from "react";
+import Slider from "@/components/Slider";
 
 
 export default function page({ products }) {
@@ -47,9 +47,9 @@ export async function getServerSideProps(num) {
     const res = await fetch(`https://localhost:7037/api/v1/Product/getall`)
     const data = await res.json()
 
-    console.log("number",num);
-
     const products = data.products;
+
+    
     // Pass data to the page via props
     return { props: { products } }
 }

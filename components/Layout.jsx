@@ -1,4 +1,4 @@
-import Provider from "../Provider";
+import Provider from "@/app/Provider";
 import Header from "./Header";
 
 export default function Layout({ children }) {

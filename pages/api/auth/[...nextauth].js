@@ -30,7 +30,6 @@ export default NextAuth({
                     });
                     if (res.ok) {
                         const user = await res.json();
-                        console.log("token: " + user);
 
                         // Return the user data and the JWT token
                         return user ;

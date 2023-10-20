@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
 
-function Slider() {
+
+export default function Slider() {
 
 
     const [featured, setFeatured] = useState([])
@@ -36,4 +37,11 @@ function Slider() {
     )
 }
 
-export default Slider
+export async function getServerSideProps() {
+    // Fetch data from external API
+    const res = await fetch(`https://fakestoreapi.com/products`)
+    const products = await res.json()
+   
+    // Pass data to the page via props
+    return { props: { products } }
+  }
