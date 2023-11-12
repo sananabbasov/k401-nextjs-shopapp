@@ -50,6 +50,9 @@ export default NextAuth({
 
     ],
     callbacks: {
+        pages: {
+            signIn: '/auth/login',
+          },
         async jwt({ token, user }) {
             return { ...token, ...user };
           },

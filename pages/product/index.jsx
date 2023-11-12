@@ -20,7 +20,7 @@ export default function index({ products }) {
     fetchData()
   }, [page])
 
-  console.log(data);
+
 
   return (
     <div>
@@ -45,7 +45,6 @@ export async function getServerSideProps() {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos/1`)
   const products = await res.json()
-  console.log(products);
   // Pass data to the page via props
   return { props: { products } }
 }
